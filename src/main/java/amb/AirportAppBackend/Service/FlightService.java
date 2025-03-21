@@ -3,6 +3,7 @@ package amb.AirportAppBackend.Service;
 import amb.AirportAppBackend.Repository.AirportRepository;
 import amb.AirportAppBackend.Repository.FlightRepository;
 import amb.AirportAppBackend.model.Flight;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,9 +38,22 @@ public class FlightService {
         return flightRepository.save(flight);
     }
 
-    public boolean existsById(Long id) {
-        Optional<Flight> flight = flightRepository.findById(id);
-        return flight.isPresent();
+    @Transactional
+    public boolean deleteById(Long id) {
+        return flightRepository.findById(id)
+                .map(flight -> {
+                    flightRepository.delete(flight);
+                    return true;
+                })
+                .orElse(false); // Si no existe, devolvemos false
+    }
+
+    public Long countFlights() {
+        return flightRepository.count();
+    }
+
+    public Flight findByFlightNumber(String flightNumber) {
+        return  flightRepository.findByFlightNumber(flightNumber);
     }
 
 

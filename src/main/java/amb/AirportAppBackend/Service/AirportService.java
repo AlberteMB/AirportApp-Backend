@@ -2,6 +2,7 @@ package amb.AirportAppBackend.Service;
 
 import amb.AirportAppBackend.Repository.AirportRepository;
 import amb.AirportAppBackend.model.Airport;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,8 +42,19 @@ public class AirportService {
         return airportRepository.save(airport);
     }
 
-    public void deleteById(Long id) {
-        airportRepository.deleteById(id);
+    @Transactional
+    public boolean deleteById(Long id) {
+        return airportRepository.findById(id)
+                .map(airport -> {
+                    // Check if the airport has associated flights
+                    if (!airport.getDepartingFlights().isEmpty() || !airport.getArrivingFlights().isEmpty()) {
+                        throw new IllegalStateException("It cannot be deleted because it has associated flights");
+                    }
+
+                    airportRepository.delete(airport);
+                    return true;
+                })
+                .orElse(false);
     }
 
     public List<Airport> findByCountry(String country) {

@@ -54,8 +54,13 @@ public class AirportController {
     public ResponseEntity<Void> deleteAirport(@PathVariable Long id) {
         return airportService.findById(id)
                 .map(airport -> {
-                    airportService.deleteById(id);
-                    return ResponseEntity.ok().<Void>build();
+                    boolean deleted = airportService.deleteById(id);
+                    if (deleted) {
+                        // <Void>build() returns a ResponseEntity<Void>
+                        return ResponseEntity.ok().<Void>build();
+                    } else {
+                        return ResponseEntity.internalServerError().<Void>build();
+                    }
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
