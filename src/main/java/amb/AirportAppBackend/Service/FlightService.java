@@ -52,8 +52,9 @@ public class FlightService {
         return flightRepository.count();
     }
 
-    public Flight findByFlightNumber(String flightNumber) {
-        return  flightRepository.findByFlightNumber(flightNumber);
+
+    public List<Flight> searchFlights(String keyword) {
+        return flightRepository.searchFlights(keyword);
     }
 
 

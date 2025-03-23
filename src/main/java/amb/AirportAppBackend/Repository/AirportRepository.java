@@ -22,6 +22,6 @@ public interface AirportRepository extends JpaRepository<Airport, Long>, JpaSpec
     Airport findByCode(String code);
 
     // Custom query example
-    @Query("SELECT a FROM Airport a WHERE a.name LIKE %:keyword% OR a.code LIKE %:keyword%")
+    @Query("SELECT a FROM Airport a WHERE a.name LIKE %:keyword% OR a.code LIKE %:keyword% OR a.city LIKE %:keyword% OR a.country LIKE %:keyword%")
     List<Airport> searchAirports(@Param("keyword") String keyword);
 }

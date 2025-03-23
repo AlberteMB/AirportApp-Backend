@@ -33,4 +33,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long>, JpaSpecif
     // Custom query to find delayed flights
     @Query("SELECT f FROM Flight f WHERE f.departureTime < CURRENT_TIMESTAMP AND f.status != 'DEPARTED'")
     List<Flight> findDelayedFlights();
+
+    @Query("SELECT f FROM Flight f WHERE f.flightNumber LIKE %:keyword% OR f.status LIKE %:keyword%")
+    List<Flight> searchFlights(String keyword);
 }

@@ -57,17 +57,6 @@ public class AirportService {
                 .orElse(false);
     }
 
-    public List<Airport> findByCountry(String country) {
-        return airportRepository.findByCountry(country);
-    }
-
-    public List<Airport> findByCity(String city) {
-        return airportRepository.findByCity(city);
-    }
-
-    public Airport findByCode(String code) {
-        return airportRepository.findByCode(code);
-    }
 
     public List<Airport> searchAirports(String keyword) {
         return airportRepository.searchAirports(keyword);
