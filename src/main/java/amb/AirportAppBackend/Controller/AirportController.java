@@ -52,17 +52,11 @@ public class AirportController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAirport(@PathVariable Long id) {
-        return airportService.findById(id)
-                .map(airport -> {
-                    boolean deleted = airportService.deleteById(id);
-                    if (deleted) {
-                        // <Void>build() returns a ResponseEntity<Void>
-                        return ResponseEntity.ok().<Void>build();
-                    } else {
-                        return ResponseEntity.internalServerError().<Void>build();
-                    }
-                })
-                .orElse(ResponseEntity.notFound().build());
+        return airportService.findById(id).map(airport ->
+                    airportService.deleteById(id)
+                    ? ResponseEntity.ok().<Void>build()
+                    : ResponseEntity.internalServerError().<Void>build())
+                    .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/search")

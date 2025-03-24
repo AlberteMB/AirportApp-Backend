@@ -3,6 +3,8 @@ package amb.AirportAppBackend.Service;
 import amb.AirportAppBackend.Repository.PlaneRepository;
 import amb.AirportAppBackend.model.Plane;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +19,11 @@ public class PlaneService {
 
     public List<Plane> findAll() {
         return planeRepository.findAll();
+    }
+
+    public Page<Plane> findAll(Pageable pageable){
+        return planeRepository.findAll(pageable);
+
     }
 
     public Plane save(Plane plane) {

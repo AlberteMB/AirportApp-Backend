@@ -20,7 +20,12 @@ public class Flight {
     private String flightNumber;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private String status;
+    public enum FlightStatus{
+        ON_TIME, DELAYED, CANCELLED;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private FlightStatus status;
 
     @ManyToOne
     @JoinColumn(name = "departure_airport_id")
