@@ -1,11 +1,10 @@
-package amb.AirportAppBackend.Controller;
+package amb.AirportAppBackend.controller;
 
-import amb.AirportAppBackend.Service.AirportService;
+import amb.AirportAppBackend.service.AirportService;
 import amb.AirportAppBackend.model.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

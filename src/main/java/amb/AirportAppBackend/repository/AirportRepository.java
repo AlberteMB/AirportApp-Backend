@@ -1,4 +1,4 @@
-package amb.AirportAppBackend.Repository;
+package amb.AirportAppBackend.repository;
 
 import amb.AirportAppBackend.model.Airport;
 import org.springframework.data.jpa.repository.JpaRepository;

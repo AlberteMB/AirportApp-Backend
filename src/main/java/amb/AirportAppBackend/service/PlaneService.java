@@ -1,6 +1,6 @@
-package amb.AirportAppBackend.Service;
+package amb.AirportAppBackend.service;
 
-import amb.AirportAppBackend.Repository.PlaneRepository;
+import amb.AirportAppBackend.repository.PlaneRepository;
 import amb.AirportAppBackend.model.Plane;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,7 @@
-package amb.AirportAppBackend.Controller;
+package amb.AirportAppBackend.controller;
 
 
-import amb.AirportAppBackend.Repository.PlaneRepository;
-import amb.AirportAppBackend.Service.PlaneService;
+import amb.AirportAppBackend.service.PlaneService;
 import amb.AirportAppBackend.model.Plane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

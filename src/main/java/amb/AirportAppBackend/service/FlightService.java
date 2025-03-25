@@ -1,7 +1,6 @@
-package amb.AirportAppBackend.Service;
+package amb.AirportAppBackend.service;
 
-import amb.AirportAppBackend.Repository.AirportRepository;
-import amb.AirportAppBackend.Repository.FlightRepository;
+import amb.AirportAppBackend.repository.FlightRepository;
 import amb.AirportAppBackend.model.Flight;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
