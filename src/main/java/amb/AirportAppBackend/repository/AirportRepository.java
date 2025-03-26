@@ -13,7 +13,7 @@ import java.util.List;
 public interface AirportRepository extends JpaRepository<Airport, Long>, JpaSpecificationExecutor<Airport> {
 
     // Find airports by country
-    List<Airport> findByCountry(String country);
+    List<Airport> findByRegion(String region);
 
     // Find airports by city
     List<Airport> findByCity(String city);
@@ -21,7 +21,12 @@ public interface AirportRepository extends JpaRepository<Airport, Long>, JpaSpec
     // Find airport by code
     Airport findByCode(String code);
 
+    // Find by latitude and longitude. 0.0001 = 11 meters of difference.
+    @Query("SELECT a FROM Airport a WHERE ABS(a.latitude - :latitude) < 0.0001 AND ABS(a.longitude - :longitude) < 0.0001")
+    List<Airport> findNearbyAirports(@Param("latitude") Double latitude, @Param("longitude") Double longitude);
+
+
     // Custom query example
-    @Query("SELECT a FROM Airport a WHERE a.name LIKE %:keyword% OR a.code LIKE %:keyword% OR a.city LIKE %:keyword% OR a.country LIKE %:keyword%")
+    @Query("SELECT a FROM Airport a WHERE a.name LIKE %:keyword% OR a.code LIKE %:keyword% OR a.city LIKE %:keyword% OR a.region LIKE %:keyword%")
     List<Airport> searchAirports(@Param("keyword") String keyword);
 }

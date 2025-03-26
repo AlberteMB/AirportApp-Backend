@@ -34,6 +34,14 @@ public class AirportController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/by-coordinates")
+    public ResponseEntity<List<Airport>> getAirportsByCoordinates(
+            @RequestParam Double latitude,
+            @RequestParam Double longitude) {
+        List<Airport> airports = airportService.findAirportsByCoordinates(latitude, longitude);
+        return ResponseEntity.ok(airports);
+    }
+
     @PostMapping
     public Airport createAirport(@RequestBody Airport airport) {
         return airportService.save(airport);

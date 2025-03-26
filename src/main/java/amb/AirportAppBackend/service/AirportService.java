@@ -61,4 +61,8 @@ public class AirportService {
     public List<Airport> searchAirports(String keyword) {
         return airportRepository.searchAirports(keyword);
     }
+
+    public List<Airport> findAirportsByCoordinates(Double latitude, Double longitude) {
+        return airportRepository.findNearbyAirports(latitude, longitude);
+    }
 }
