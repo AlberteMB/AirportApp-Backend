@@ -23,8 +23,8 @@ public class AirportController {
     }
 
     @GetMapping
-    public Page<Airport> getAllAirports(Pageable pageable) {
-        return airportService.findAll(pageable);
+    public List<Airport> getAllAirports() {
+        return airportService.findAll();
     }
 
     @GetMapping("/{id}")
