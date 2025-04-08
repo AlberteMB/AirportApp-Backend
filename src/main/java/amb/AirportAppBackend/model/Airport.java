@@ -35,6 +35,7 @@ public class Airport {
     @Column(nullable = false)
     private double longitude;
 
+
     @OneToMany(mappedBy = "departureAirport", cascade = CascadeType.ALL)
     private List<Flight> departingFlights;
 

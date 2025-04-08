@@ -1,5 +1,6 @@
 package amb.AirportAppBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,14 +29,17 @@ public class Flight {
     private FlightStatus status;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "departure_airport_id")
     private Airport departureAirport;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "arrival_airport_id")
     private Airport arrivalAirport;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "plane_id")
     private Plane plane;
 }

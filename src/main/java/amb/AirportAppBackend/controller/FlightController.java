@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/flights")
+@RequestMapping("/api/v1/flights")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FlightController {
 
     private final FlightService flightService;
